@@ -1,21 +1,30 @@
-# Vert.x API Gateway
+# ⚡ Vert.x 5 Asynchronous API Gateway
 
-[![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://adoptium.net/)
-[![Vert.x](https://img.shields.io/badge/Vert.x-5.1.4-7832CD.svg)](https://vertx.io/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
-[![CI Build](https://img.shields.io/badge/CI%20Build-Passing-brightgreen.svg)](.github/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Java 17](https://img.shields.io/badge/Java-17-orange.svg?style=for-the-badge&logo=openjdk)](https://adoptium.net/)
+[![Vert.x 5](https://img.shields.io/badge/Vert.x-5.1.4-7832CD.svg?style=for-the-badge&logo=eclipsevert.x)](https://vertx.io/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?style=for-the-badge&logo=docker)](https://www.docker.com/)
+[![Render](https://img.shields.io/badge/Render-Live%20Demo-46E3B7.svg?style=for-the-badge&logo=render)](https://miko-3g9m.onrender.com/)
+[![CI Build](https://img.shields.io/badge/CI%20Build-Passing-brightgreen.svg?style=for-the-badge&logo=githubactions)](.github/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-**Author:** Siddharth Shinde | **Project:** Asynchronous API Gateway Assessment
-**🚀 Live Cloud Demo (Render):** [https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/) | **Test Aggregation:** [https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)
-
-A high-performance, non-blocking **Asynchronous API Gateway** built with **Java 17** and **Vert.x 5.1.4**. 
-
-Designed for simplicity, speed, and rugged reliability, this service ingests HTTP requests on port `8080`, executes parallel non-blocking calls to external REST services, aggregates the results, and returns a unified JSON response—protected by a **Circuit Breaker** to prevent cascading failures.
+> **A high-performance, non-blocking, multi-reactor API Gateway built with Java 17 and Eclipse Vert.x 5.**
+> Designed for simplicity, speed, and rugged reliability—following a minimalist philosophy of zero bloat and high cohesion.
 
 ---
 
-## ⚡ Key Features
+## 🌟 Submission & Live Cloud Demo
+
+| Attribute | Details |
+| :--- | :--- |
+| **👨‍💻 Author / Developer** | **Siddharth Shinde** |
+| **🏆 Assessment Focus** | Junior / Senior Java Backend Engineering Assessment |
+| **🌐 Live Cloud Demo** | **[https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/)** *(Service Discovery & Architecture Dashboard)* |
+| **⚡ Test Aggregation** | **[https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)** *(Live Parallel Upstream Execution)* |
+| **📦 GitHub Repository** | **[https://github.com/sidinsearch/miko](https://github.com/sidinsearch/miko)** |
+
+---
+
+## ⚡ Key Architectural Highlights
 
 - **True Asynchronous I/O**: Built natively on the Vert.x reactive event loop using `Future.all()` for concurrent execution without blocking threads.
 - **Circuit Breaker Resilience**: Integrated `vertx-circuit-breaker` automatically trips on repeated timeouts or upstream failures, returning instantaneous graceful fallbacks.
