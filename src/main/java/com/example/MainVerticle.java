@@ -36,7 +36,8 @@ public class MainVerticle extends AbstractVerticle {
 
     retriever.getConfig()
       .compose(fileConfig -> {
-        JsonObject mergedConfig = fileConfig.mergeIn(config());
+        // Deployment config (from tests or CLI) overrides file config
+        JsonObject mergedConfig = fileConfig.mergeIn(config(), true);
         int port = mergedConfig.getInteger("server.port", 8080);
         this.apiService = new ApiService(vertx, mergedConfig);
 
