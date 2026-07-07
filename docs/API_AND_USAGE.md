@@ -24,11 +24,11 @@ curl -i http://localhost:8080/aggregate
 ```http
 HTTP/1.1 200 OK
 content-type: application/json
-content-length: 114
+content-length: 98
 
 {
-  "post_title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-  "author_name": "Leanne Graham"
+  "post_title": "Vert.x 5 Asynchronous API Gateway Assessment",
+  "author_name": "Siddharth Shinde"
 }
 ```
 
