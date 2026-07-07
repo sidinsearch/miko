@@ -89,6 +89,7 @@ class MainVerticleTest {
     JsonObject config = new JsonObject()
       .put("server.port", 0)
       .put("request.timeout.ms", timeoutMs)
+      .put("circuit.breaker.timeout.ms", timeoutMs)
       .put("post.url", stubs.postUrl())
       .put("user.url", stubs.userUrl());
 
