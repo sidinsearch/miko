@@ -1,6 +1,8 @@
 package com.example;
 
 import io.vertx.config.ConfigRetriever;
+import io.vertx.config.ConfigRetrieverOptions;
+import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
@@ -23,7 +25,14 @@ public class MainVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise) {
-    ConfigRetriever retriever = ConfigRetriever.create(vertx);
+    ConfigStoreOptions classpathStore = new ConfigStoreOptions()
+      .setType("file")
+      .setConfig(new JsonObject().put("path", "application.json"));
+
+    ConfigRetrieverOptions options = new ConfigRetrieverOptions()
+      .addStore(classpathStore);
+
+    ConfigRetriever retriever = ConfigRetriever.create(vertx, options);
 
     retriever.getConfig()
       .compose(fileConfig -> {
