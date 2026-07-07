@@ -74,7 +74,8 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/").handler(ctx -> ctx.response()
       .putHeader("content-type", "application/json")
       .end(new JsonObject()
-        .put("service", "Vert.x API Gateway")
+        .put("project", "Vert.x Asynchronous API Gateway Assessment")
+        .put("author", "Siddharth Shinde")
         .put("status", "running")
         .put("endpoint", "/aggregate")
         .encode()));

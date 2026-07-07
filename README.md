@@ -6,6 +6,8 @@
 [![CI Build](https://img.shields.io/badge/CI%20Build-Passing-brightgreen.svg)](.github/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**Author:** Siddharth Shinde | **Project:** Asynchronous API Gateway Assessment
+
 A high-performance, non-blocking **Asynchronous API Gateway** built with **Java 17** and **Vert.x 5.1.4**. 
 
 Designed for simplicity, speed, and rugged reliability, this service ingests HTTP requests on port `8080`, executes parallel non-blocking calls to external REST services, aggregates the results, and returns a unified JSON response—protected by a **Circuit Breaker** to prevent cascading failures.
