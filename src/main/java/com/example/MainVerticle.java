@@ -70,16 +70,27 @@ public class MainVerticle extends AbstractVerticle {
     // Request logging middleware
     router.route().handler(this::logRequest);
 
-    // Root welcome handler directing to primary endpoint
+    // Root service discovery & mini-documentation handler
     router.get("/").handler(ctx -> ctx.response()
       .putHeader("content-type", "application/json")
       .end(new JsonObject()
-        .put("message", "Welcome to the Vert.x Asynchronous API Gateway!")
-        .put("project", "Junior / Senior Java Backend Assessment")
+        .put("project", "Vert.x 5 Asynchronous API Gateway Assessment")
         .put("author", "Siddharth Shinde")
         .put("status", "running")
-        .put("endpoint", "/aggregate")
-        .encode()));
+        .put("architecture", new JsonObject()
+          .put("runtime", "Java 17 (LTS) + Eclipse Vert.x 5.1.4")
+          .put("concurrency_model", "Multi-Reactor Event Loop (Non-blocking I/O)")
+          .put("parallelism", "Executes upstream requests concurrently using Vert.x Future.all()")
+          .put("resilience", "Integrated Circuit Breaker short-circuits requests on upstream failure or timeout"))
+        .put("endpoints", new JsonObject()
+          .put("index", "GET / (Service Discovery & Documentation)")
+          .put("aggregate", "GET /aggregate (Fetches & combines data from Posts and Users APIs)"))
+        .put("usage_and_testing", new JsonObject()
+          .put("curl_example", "curl -i http://localhost:8080/aggregate")
+          .put("automated_tests", "Run 'mvn clean verify' to execute JUnit 5 integration test suite")
+          .put("postman", "Import 'postman_collection.json' for automated assertions")
+          .put("documentation", "See README.md and docs/ directory for in-depth engineering guides"))
+        .encodePrettily()));
 
     // Primary assessment endpoint
     AggregateHandler aggregateHandler = new AggregateHandler(apiService);
