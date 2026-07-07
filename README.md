@@ -12,14 +12,12 @@
 
 ---
 
-## 🌟 Submission & Live Cloud Demo
+## Deployed Demo & Repository
 
 | Attribute | Details |
 | :--- | :--- |
-| **👨‍💻 Author / Developer** | **Siddharth Shinde** |
-| **🏆 Assessment Focus** | Junior / Senior Java Backend Engineering Assessment |
-| **🌐 Live Cloud Demo** | **[https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/)** *(Service Discovery & Architecture Dashboard)* |
-| **⚡ Test Aggregation** | **[https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)** *(Live Parallel Upstream Execution)* |
+| **🌐 Live Cloud Demo** | **[https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/)**  |
+| **⚡ Test Aggregation** | **[https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)**  |
 | **📦 GitHub Repository** | **[https://github.com/sidinsearch/miko](https://github.com/sidinsearch/miko)** |
 
 ---
