@@ -1,0 +1,56 @@
+{
+  "info": {
+    "_postman_id": "b18f4803-3485-4428-a400-33737b83030d",
+    "name": "Vert.x API Gateway Assessment",
+    "description": "Postman collection for testing the asynchronous Vert.x API Gateway aggregation endpoint and circuit breaker resilience.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Aggregate Data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response has post_title and author_name\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.post_title).to.be.a('string');",
+              "    pm.expect(jsonData.author_name).to.be.a('string');",
+              "});",
+              "pm.test(\"Response time is less than 3000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/aggregate",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "aggregate"
+          ]
+        },
+        "description": "Calls external services in parallel and aggregates post_title and author_name."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}

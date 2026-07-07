@@ -1,0 +1,10 @@
+target
+.git
+.github
+.idea
+.vscode
+*.log
+Dockerfile
+docker-compose.yml
+README.md
+docs

@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Vert.x API Gateway
+  description: Asynchronous Vert.x API Gateway performing parallel non-blocking aggregation of external REST APIs with Circuit Breaker resilience.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development & Docker server
+paths:
+  /aggregate:
+    get:
+      summary: Get aggregated post and author data
+      description: In parallel, fetches post details from `posts/1` and user details from `users/1`, combining them into a single response. Protected by Vert.x Circuit Breaker.
+      responses:
+        '200':
+          description: Successful aggregation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AggregateResponse'
+              example:
+                post_title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+                author_name: "Leanne Graham"
+        '500':
+          description: Upstream service failure or circuit breaker open
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Failed to fetch external service"
+components:
+  schemas:
+    AggregateResponse:
+      type: object
+      properties:
+        post_title:
+          type: string
+        author_name:
+          type: string
+      required:
+        - post_title
+        - author_name
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
