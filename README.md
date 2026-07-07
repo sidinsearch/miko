@@ -121,7 +121,7 @@ For comprehensive API usage, Postman automated collections, and OpenAPI specific
 
 ## ⚙️ Configuration
 
-Configure runtime behavior via `src/main/resources/config.json` or system environment variables:
+Configure runtime behavior via `src/main/resources/application.json` or system environment variables:
 
 | Property Key | Environment Variable | Default Value | Description |
 | :--- | :--- | :--- | :--- |

@@ -1,7 +1,7 @@
 {
   "server.port": 8080,
   "request.timeout.ms": 5000,
-  "post.url": "https://broken-upstream-domain-testing.com/posts/1",
+  "post.url": "https://jsonplaceholder.typicode.com/posts/1",
   "user.url": "https://jsonplaceholder.typicode.com/users/1",
   "circuit.breaker.max.failures": 3,
   "circuit.breaker.timeout.ms": 5000,

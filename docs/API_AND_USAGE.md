@@ -51,7 +51,7 @@ content-length: 44
 
 ### Simulating Circuit Breaker Tripping
 To test circuit breaker resilience locally:
-1. Temporarily set an invalid upstream URL in `src/main/resources/config.json` (e.g., `"post.url": "http://localhost:9999/invalid"`).
+1. Temporarily set an invalid upstream URL in `src/main/resources/application.json` (e.g., `"post.url": "http://localhost:9999/invalid"`).
 2. Start the server (`mvn compile exec:java`).
 3. Make 3 rapid curl requests:
    ```bash
