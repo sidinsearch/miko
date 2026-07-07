@@ -53,9 +53,7 @@ public class ApiService {
         PostResponse post = composite.resultAt(0);
         UserResponse user = composite.resultAt(1);
         LOGGER.info("Successfully fetched upstream post {} by user {} in parallel", post.id(), user.id());
-        return new AggregateResponse(
-          "Vert.x 5 Asynchronous API Gateway Assessment",
-          "Siddharth Shinde");
+        return new AggregateResponse(post.title(), user.name());
       })
       .onFailure(error -> LOGGER.error("Parallel aggregation failed: {}", error.getMessage()));
   }

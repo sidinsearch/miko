@@ -102,8 +102,8 @@ curl -i http://localhost:8080/aggregate
 **Success Response (`200 OK`):**
 ```json
 {
-  "post_title": "Vert.x 5 Asynchronous API Gateway Assessment",
-  "author_name": "Siddharth Shinde"
+  "post_title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "author_name": "Leanne Graham"
 }
 ```
 

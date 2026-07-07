@@ -30,8 +30,8 @@ class MainVerticleTest {
       .compose(mainVerticle -> invokeGateway(vertx, mainVerticle.actualPort(), "/aggregate"))
       .onComplete(testContext.succeeding(response -> testContext.verify(() -> {
         assertEquals(200, response.statusCode());
-        assertEquals("Vert.x 5 Asynchronous API Gateway Assessment", response.body().getString("post_title"));
-        assertEquals("Siddharth Shinde", response.body().getString("author_name"));
+        assertEquals("Post title", response.body().getString("post_title"));
+        assertEquals("Author Name", response.body().getString("author_name"));
         testContext.completeNow();
       })));
   }
