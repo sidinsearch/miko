@@ -70,6 +70,15 @@ public class MainVerticle extends AbstractVerticle {
     // Request logging middleware
     router.route().handler(this::logRequest);
 
+    // Root welcome handler directing to primary endpoint
+    router.get("/").handler(ctx -> ctx.response()
+      .putHeader("content-type", "application/json")
+      .end(new JsonObject()
+        .put("service", "Vert.x API Gateway")
+        .put("status", "running")
+        .put("endpoint", "/aggregate")
+        .encode()));
+
     // Primary assessment endpoint
     AggregateHandler aggregateHandler = new AggregateHandler(apiService);
     router.get("/aggregate").handler(aggregateHandler);
