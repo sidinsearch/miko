@@ -59,19 +59,23 @@ You can easily deploy this repository to modern cloud providers directly from yo
 ### Option A: Railway (railway.app)
 1. Log in to [Railway](https://railway.app/) with your GitHub account.
 2. Click **New Project** → **Deploy from GitHub repo**.
-3. Select this repository (`vertx-api-gateway`).
+3. Select this repository (`https://github.com/sidinsearch/miko` or `miko`).
 4. Railway will automatically detect the `Dockerfile` and initiate the build.
-5. In **Settings** → **Networking**, click **Generate Domain** (e.g., `https://vertx-gateway.up.railway.app`).
+5. In **Settings** → **Networking**, click **Generate Domain** (e.g., `https://miko.up.railway.app`).
 6. Your live `/aggregate` endpoint is ready!
 
 ---
 
-### Option B: Render (render.com)
+### Option B: Render (render.com) - 🚀 Live Demo Available!
 1. Log in to [Render](https://render.com/).
-2. Click **New** → **Web Service** → Connect your GitHub repository.
+2. Click **New** → **Web Service** → Connect your GitHub repository (`https://github.com/sidinsearch/miko`).
 3. Choose **Runtime: Docker**.
 4. Set **Port** to `8080` (or add an environment variable `SERVER_PORT=10000` if Render assigns port 10000).
 5. Click **Create Web Service**.
+
+> **🚀 Live Deployed Instance:** This project is currently deployed and running live on Render!
+> - **Service Discovery Index:** [https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/)
+> - **Core Aggregation Endpoint:** [https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)
 
 ---
 
@@ -96,7 +100,7 @@ fly open /aggregate
 ### Option D: Koyeb (koyeb.com)
 1. Log in to [Koyeb](https://www.koyeb.com/).
 2. Click **Create Service** → **GitHub**.
-3. Select this repository.
+3. Select this repository (`https://github.com/sidinsearch/miko`).
 4. Set **Builder** to **Dockerfile**.
 5. Set **Port** to `8080`.
 6. Click **Deploy**.

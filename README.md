@@ -7,6 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Author:** Siddharth Shinde | **Project:** Asynchronous API Gateway Assessment
+**🚀 Live Cloud Demo (Render):** [https://miko-3g9m.onrender.com/](https://miko-3g9m.onrender.com/) | **Test Aggregation:** [https://miko-3g9m.onrender.com/aggregate](https://miko-3g9m.onrender.com/aggregate)
 
 A high-performance, non-blocking **Asynchronous API Gateway** built with **Java 17** and **Vert.x 5.1.4**. 
 
@@ -21,6 +22,7 @@ Designed for simplicity, speed, and rugged reliability, this service ingests HTT
 - **Rugged & Lightweight**: Minimalist, high-cohesion architecture with zero unnecessary abstractions or over-engineering.
 - **Zero-Downtime Config**: Powered by `vertx-config` for dynamic configuration via JSON file or system environment variables.
 - **Container Ready**: Includes optimized multi-stage Docker build and one-click Docker Compose orchestration.
+- **🚀 Cloud Deployed**: Live production instance hosted on Render for instantaneous evaluation!
 
 ---
 
@@ -76,7 +78,7 @@ mvn clean package
 java -jar target/vertx-api-gateway-fat.jar
 ```
 
-For complete deployment guides (including cloud hosting on Railway, Render, Fly.io, and Koyeb), see **[DEPLOYMENT_AND_HOSTING.md](docs/DEPLOYMENT_AND_HOSTING.md)**.
+For complete deployment guides (including our live deployment on Render at `https://miko-3g9m.onrender.com/`), see **[DEPLOYMENT_AND_HOSTING.md](docs/DEPLOYMENT_AND_HOSTING.md)**.
 
 ---
 
