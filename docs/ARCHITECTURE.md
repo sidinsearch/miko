@@ -71,7 +71,7 @@ return Future.all(postFuture, userFuture)
 
 In distributed systems, external dependencies will eventually fail or experience high latency. Without protection, a slow upstream service will cause requests to pile up, exhausting system memory and cascading failure across the entire infrastructure.
 
-We integrate `vertx-circuit-breaker` to wrap all outgoing network calls:
+We integrate `vertx-circuit-breaker` by assigning **dedicated, independent circuit breakers** to each upstream API (`posts-api-breaker` and `users-api-breaker`):
 
 ```mermaid
 stateDiagram-v2
@@ -87,6 +87,10 @@ stateDiagram-v2
 - **`OPEN` (Tripped State)**: Once failures reach `circuit.breaker.max.failures` (default: 3) within the timeout period, the breaker trips to `OPEN`. Subsequent incoming requests fail **instantly** without attempting network communication, protecting upstream servers and preserving local resources.
 - **`HALF-OPEN` (Recovery Probe)**: After `circuit.breaker.reset.timeout.ms` (default: 10,000 ms), the breaker transitions to `HALF-OPEN`. The next request is allowed through as a test probe. If it succeeds, the breaker resets to `CLOSED`. If it fails, it trips back to `OPEN`.
 
+> [!IMPORTANT]
+> **Why Independent Circuit Breakers?**  
+> By isolating each upstream service with its own circuit breaker (`posts-api-breaker` vs `users-api-breaker`), an outage or timeout on the Posts API will never trip or block calls to the Users API. Furthermore, successful calls to one healthy service will not reset or mask the failure counter of an unhealthy service.
+
 ---
 
 ## 5. Sequence Diagram
@@ -96,22 +100,25 @@ sequenceDiagram
     autonumber
     actor Client
     participant Gateway as Vert.x API Gateway
-    participant Breaker as Circuit Breaker
+    participant PostBreaker as Posts Breaker
+    participant UserBreaker as Users Breaker
     participant PostAPI as Posts API (/posts/1)
     participant UserAPI as Users API (/users/1)
 
     Client->>Gateway: GET /aggregate
-    Gateway->>Breaker: Execute fetchPost() & fetchUser()
     
     par Parallel Network Requests
-        Breaker->>PostAPI: Async GET /posts/1
-        Breaker->>UserAPI: Async GET /users/1
+        Gateway->>PostBreaker: Execute fetchPost()
+        PostBreaker->>PostAPI: Async GET /posts/1
+        Gateway->>UserBreaker: Execute fetchUser()
+        UserBreaker->>UserAPI: Async GET /users/1
     end
 
-    PostAPI-->>Breaker: 200 OK (Post JSON)
-    UserAPI-->>Breaker: 200 OK (User JSON)
+    PostAPI-->>PostBreaker: 200 OK (Post JSON)
+    UserAPI-->>UserBreaker: 200 OK (User JSON)
     
-    Breaker-->>Gateway: Future.all() Complete
-    Gateway->>Gateway: Map to AggregateResponse
+    PostBreaker-->>Gateway: PostResponse Future Complete
+    UserBreaker-->>Gateway: UserResponse Future Complete
+    Gateway->>Gateway: Future.all() -> Map to AggregateResponse
     Gateway-->>Client: 200 OK (Combined JSON)
 ```
