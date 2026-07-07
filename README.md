@@ -49,11 +49,13 @@ For an in-depth deep dive into the event loop mechanics, parallelism, and circui
 
 ## 🚀 Quickstart
 
-### 1. Local Development (Maven)
+### 1. Local Development (Maven / IDE)
 Ensure Java 17+ and Apache Maven are installed:
 ```bash
 mvn clean compile exec:java
 ```
+> **Note for Windows / IDE Users:** If `mvn` is not in your global system PATH, simply open the project in **IntelliJ IDEA**, right-click **`src/main/java/com/example/Main.java`**, and select **▶ Run 'Main.main()'**!
+
 The Gateway will start listening on **http://localhost:8080**.
 
 ### 2. Docker Compose (Recommended)
