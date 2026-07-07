@@ -19,7 +19,8 @@ public class ApiService {
   private static final Logger LOGGER = LoggerFactory.getLogger(ApiService.class);
 
   private final WebClient webClient;
-  private final CircuitBreaker circuitBreaker;
+  private final CircuitBreaker postCircuitBreaker;
+  private final CircuitBreaker userCircuitBreaker;
   private final String postUrl;
   private final String userUrl;
 
@@ -38,7 +39,8 @@ public class ApiService {
       .setTimeout(config.getLong("circuit.breaker.timeout.ms", timeoutMs))
       .setFallbackOnFailure(true)
       .setResetTimeout(config.getLong("circuit.breaker.reset.timeout.ms", 10000L));
-    this.circuitBreaker = CircuitBreaker.create("external-api-breaker", vertx, breakerOptions);
+    this.postCircuitBreaker = CircuitBreaker.create("posts-api-breaker", vertx, breakerOptions);
+    this.userCircuitBreaker = CircuitBreaker.create("users-api-breaker", vertx, breakerOptions);
   }
 
   /**
@@ -59,7 +61,7 @@ public class ApiService {
   }
 
   private Future<PostResponse> fetchPost() {
-    return circuitBreaker.execute(promise -> webClient.getAbs(postUrl)
+    return postCircuitBreaker.execute(promise -> webClient.getAbs(postUrl)
       .as(BodyCodec.jsonObject())
       .send()
       .onSuccess(response -> {
@@ -84,7 +86,7 @@ public class ApiService {
   }
 
   private Future<UserResponse> fetchUser() {
-    return circuitBreaker.execute(promise -> webClient.getAbs(userUrl)
+    return userCircuitBreaker.execute(promise -> webClient.getAbs(userUrl)
       .as(BodyCodec.jsonObject())
       .send()
       .onSuccess(response -> {
@@ -109,7 +111,8 @@ public class ApiService {
   }
 
   public Future<Void> close() {
-    circuitBreaker.close();
+    postCircuitBreaker.close();
+    userCircuitBreaker.close();
     webClient.close();
     return Future.succeededFuture();
   }
